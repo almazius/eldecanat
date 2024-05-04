@@ -1,7 +1,7 @@
 package http
 
 import (
-	"eldick/eldick/internal/auth/service"
+	"eldeck/eldeck/internal/auth/service"
 	"github.com/gofiber/fiber/v2"
 	"log/slog"
 )

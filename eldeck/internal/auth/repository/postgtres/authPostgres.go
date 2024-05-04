@@ -2,7 +2,7 @@ package postgtres
 
 import (
 	"context"
-	"eldick/eldick/internal/auth/models"
+	"eldeck/eldeck/internal/auth/models"
 	"fmt"
 	"github.com/jmoiron/sqlx"
 	"log/slog"

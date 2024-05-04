@@ -2,9 +2,9 @@ package service
 
 import (
 	"context"
-	"eldick/eldick/internal/auth/models"
-	"eldick/eldick/internal/auth/repository/postgtres"
-	"eldick/eldick/internal/auth/repository/redis"
+	"eldeck/eldeck/internal/auth/models"
+	"eldeck/eldeck/internal/auth/repository/postgtres"
+	"eldeck/eldeck/internal/auth/repository/redis"
 	"fmt"
 	"golang.org/x/crypto/bcrypt"
 	"log/slog"

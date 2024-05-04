@@ -1,4 +1,4 @@
-module eldick
+module eldeck
 
 go 1.22.2
 

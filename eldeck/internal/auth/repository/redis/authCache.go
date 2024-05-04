@@ -2,7 +2,7 @@ package redis
 
 import (
 	"context"
-	"eldick/eldick/config"
+	"eldeck/eldeck/config"
 	"fmt"
 	"github.com/redis/go-redis/v9"
 	"log/slog"

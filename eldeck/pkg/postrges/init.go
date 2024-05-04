@@ -1,7 +1,7 @@
 package postrges
 
 import (
-	"eldick/eldick/config"
+	"eldeck/eldeck/config"
 	"fmt"
 	_ "github.com/jackc/pgx/stdlib" // pgx driver
 	"github.com/jmoiron/sqlx"

@@ -1,9 +1,9 @@
 package http
 
 import (
-	"eldick/eldick/internal/auth/models"
-	"eldick/eldick/internal/auth/service"
-	"eldick/eldick/pkg/validator"
+	"eldeck/eldeck/internal/auth/models"
+	"eldeck/eldeck/internal/auth/service"
+	"eldeck/eldeck/pkg/validator"
 	"github.com/gofiber/fiber/v2"
 	"log/slog"
 )

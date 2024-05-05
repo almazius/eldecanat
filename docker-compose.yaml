@@ -7,14 +7,12 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: admin
-    network_mode: host
 
   redis:
     image: redis:latest
     ports:
       - 6379:6379
     restart: unless-stopped
-    network_mode: host
 
   gateway:
     build:
@@ -23,4 +21,3 @@ services:
     ports:
       - 8080:8080
     restart: unless-stopped
-    network_mode: host

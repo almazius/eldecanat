@@ -1,12 +1,14 @@
 package main
 
 import (
+	"context"
 	"eldeck/eldeck/config"
 	"eldeck/eldeck/internal/auth/http"
 	"eldeck/eldeck/internal/auth/repository/postgtres"
 	redis2 "eldeck/eldeck/internal/auth/repository/redis"
 	"eldeck/eldeck/internal/auth/service"
 	http2 "eldeck/eldeck/internal/service/http"
+	"eldeck/eldeck/pkg/automigrations"
 	"eldeck/eldeck/pkg/logger"
 	"eldeck/eldeck/pkg/postrges"
 	"eldeck/eldeck/pkg/redis"
@@ -37,6 +39,12 @@ func Init() {
 	db, err := postrges.InitPsqlDB(config.C())
 	if err != nil {
 		slog.Error("failed init postgres db", "error", err)
+		panic(err)
+	}
+
+	err = automigrations.InitRepository(context.TODO(), db)
+	if err != nil {
+		slog.Error("failed init automigrations", "error", err)
 		panic(err)
 	}
 

@@ -5,4 +5,4 @@ WORKDIR /deck
 COPY go.mod go.sum /deck/
 COPY . /deck
 
-RUN go build -v -o main eldeck/main/main.go
+RUN go run eldeck/main/main.go

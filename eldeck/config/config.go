@@ -41,7 +41,7 @@ type Postgres struct {
 
 func LoadConfig() (*viper.Viper, error) {
 	v := viper.New()
-	v.AddConfigPath("config")
+	v.AddConfigPath("eldeck/config")
 	v.SetConfigName("config")
 	v.SetConfigType("json")
 	err := v.ReadInConfig()

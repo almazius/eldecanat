@@ -1,14 +1,14 @@
 package main
 
 import (
-	"context"
 	"eldeck/eldeck/config"
 	"eldeck/eldeck/internal/auth/http"
 	"eldeck/eldeck/internal/auth/repository/postgtres"
 	redis2 "eldeck/eldeck/internal/auth/repository/redis"
 	"eldeck/eldeck/internal/auth/service"
+	"eldeck/eldeck/internal/role/route"
+	"eldeck/eldeck/internal/role/usecase"
 	http2 "eldeck/eldeck/internal/service/http"
-	"eldeck/eldeck/pkg/automigrations"
 	"eldeck/eldeck/pkg/logger"
 	"eldeck/eldeck/pkg/postrges"
 	"eldeck/eldeck/pkg/redis"
@@ -42,11 +42,11 @@ func Init() {
 		panic(err)
 	}
 
-	err = automigrations.InitRepository(context.TODO(), db)
-	if err != nil {
-		slog.Error("failed init automigrations", "error", err)
-		panic(err)
-	}
+	//err = automigrations.InitRepository(context.TODO(), db)
+	//if err != nil {
+	//	slog.Error("failed init automigrations", "error", err)
+	//	panic(err)
+	//}
 
 	rdb, err := redis.Init(config.C())
 	if err != nil {
@@ -58,14 +58,17 @@ func Init() {
 	authRepository := postgtres.NewAuthRepository(db)
 
 	authService := service.NewAuthService(authRepository, authCache)
+	roleService := usecase.NewRoleService()
 
 	app := fiber.New()
 
+	roleHandlers := route.NewRoleHandlers(app, roleService)
 	authHandler := http.NewAuthHandler(authService)
 	mw := http.NewAuthMW(authService)
 
 	authGroup := app.Group("/auth")
 	apiGroup := app.Group("/api")
+	roleHandlers.InitRoleMap(mw)
 
 	http.AuthRoute(authGroup, authHandler)
 	http2.ServiceRoute(apiGroup, mw, nil)
